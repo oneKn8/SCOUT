@@ -1,0 +1,13 @@
+# Global owners
+* @scout-team
+
+# Frontend specific
+/src/ @scout-frontend-team
+/components/ @scout-frontend-team
+/app/ @scout-frontend-team
+
+# Configuration
+/.github/ @scout-team
+/package.json @scout-team
+/tailwind.config.js @scout-team
+/next.config.js @scout-team
