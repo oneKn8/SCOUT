@@ -11,7 +11,11 @@ import { formatFileSize, generateFileHash } from "@/lib/utils";
 import { UploadResponse, UploadState, ALLOWED_FILE_TYPES, MAX_FILE_SIZE } from "@/types/upload";
 import { UploadResult } from "./upload-result";
 
-export function UploadForm() {
+interface UploadFormProps {
+  onUploadSuccess?: (result: UploadResponse) => void;
+}
+
+export function UploadForm({ onUploadSuccess }: UploadFormProps) {
   const [uploadState, setUploadState] = useState<UploadState>({
     isUploading: false,
     uploadResult: null,
@@ -120,6 +124,11 @@ export function UploadForm() {
         error: null,
       });
 
+      // Call the success callback if provided
+      if (onUploadSuccess) {
+        onUploadSuccess(result);
+      }
+
       toast({
         title: "Upload Successful",
         description: `${selectedFile.name} has been uploaded successfully.`,
@@ -143,7 +152,7 @@ export function UploadForm() {
         description: errorMessage,
       });
     }
-  }, [selectedFile, toast]);
+  }, [selectedFile, toast, onUploadSuccess]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter" || e.key === " ") {
