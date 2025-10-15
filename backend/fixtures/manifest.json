@@ -1,0 +1,303 @@
+{
+  "manifest_version": "1.0.0",
+  "created_at": "2025-09-24",
+  "description": "SCOUT Test Fixture Corpus - Anonymized resume samples for QA and testing",
+  "total_files": 10,
+  "test_categories": ["happy_path", "edge_cases", "error_conditions", "accessibility", "performance"],
+
+  "fixtures": [
+    {
+      "id": "student_001",
+      "filename": "student_recent_grad.docx",
+      "category": "student",
+      "format": "docx",
+      "difficulty": "easy",
+      "file_size_kb": 45,
+      "description": "Recent computer science graduate with internships and projects",
+      "expected_sections": {
+        "contact": true,
+        "education": true,
+        "experience": true,
+        "skills": true,
+        "projects": true,
+        "achievements": false
+      },
+      "extraction_notes": "Clean structure, standard academic format",
+      "test_tags": ["happy_path", "education_heavy", "entry_level"],
+      "parsing_expectations": {
+        "success_rate": 95,
+        "sections_detected": 5,
+        "skills_extracted": 12,
+        "experience_entries": 2
+      }
+    },
+
+    {
+      "id": "swe_senior_001",
+      "filename": "senior_software_engineer.docx",
+      "category": "software_engineer",
+      "format": "docx",
+      "difficulty": "medium",
+      "file_size_kb": 78,
+      "description": "Senior software engineer with 8+ years experience, multiple roles",
+      "expected_sections": {
+        "contact": true,
+        "summary": true,
+        "experience": true,
+        "skills": true,
+        "projects": true,
+        "achievements": true
+      },
+      "extraction_notes": "Multiple positions, technical skills emphasis",
+      "test_tags": ["happy_path", "experience_heavy", "senior_level"],
+      "parsing_expectations": {
+        "success_rate": 90,
+        "sections_detected": 6,
+        "skills_extracted": 25,
+        "experience_entries": 4
+      }
+    },
+
+    {
+      "id": "data_scientist_001",
+      "filename": "data_scientist_phd.docx",
+      "category": "data_science",
+      "format": "docx",
+      "difficulty": "medium",
+      "file_size_kb": 92,
+      "description": "PhD data scientist with research background and industry experience",
+      "expected_sections": {
+        "contact": true,
+        "summary": true,
+        "education": true,
+        "experience": true,
+        "skills": true,
+        "achievements": true
+      },
+      "extraction_notes": "Academic + industry mix, publications section",
+      "test_tags": ["happy_path", "academic_background", "publications"],
+      "parsing_expectations": {
+        "success_rate": 85,
+        "sections_detected": 6,
+        "skills_extracted": 30,
+        "experience_entries": 3
+      }
+    },
+
+    {
+      "id": "embedded_001",
+      "filename": "embedded_systems_engineer.docx",
+      "category": "embedded_engineer",
+      "format": "docx",
+      "difficulty": "medium",
+      "file_size_kb": 63,
+      "description": "Embedded systems engineer with hardware/software focus",
+      "expected_sections": {
+        "contact": true,
+        "experience": true,
+        "skills": true,
+        "education": true,
+        "projects": true,
+        "achievements": false
+      },
+      "extraction_notes": "Technical hardware/software skills mix",
+      "test_tags": ["happy_path", "technical_skills", "hardware_software"],
+      "parsing_expectations": {
+        "success_rate": 90,
+        "sections_detected": 5,
+        "skills_extracted": 20,
+        "experience_entries": 3
+      }
+    },
+
+    {
+      "id": "complex_layout_001",
+      "filename": "complex_table_layout.docx",
+      "category": "layout_test",
+      "format": "docx",
+      "difficulty": "hard",
+      "file_size_kb": 156,
+      "description": "Resume with complex tables, columns, and embedded images",
+      "expected_sections": {
+        "contact": true,
+        "experience": true,
+        "skills": true,
+        "education": true,
+        "projects": false,
+        "achievements": true
+      },
+      "extraction_notes": "Tests table parsing, multi-column layouts, image handling",
+      "test_tags": ["edge_case", "complex_layout", "tables", "images"],
+      "parsing_expectations": {
+        "success_rate": 60,
+        "sections_detected": 4,
+        "skills_extracted": 15,
+        "experience_entries": 2,
+        "warnings_expected": ["complex_layout", "table_parsing", "image_content"]
+      }
+    },
+
+    {
+      "id": "minimal_001",
+      "filename": "minimal_resume.txt",
+      "category": "minimal",
+      "format": "txt",
+      "difficulty": "easy",
+      "file_size_kb": 8,
+      "description": "Plain text resume with minimal formatting",
+      "expected_sections": {
+        "contact": true,
+        "experience": true,
+        "skills": true,
+        "education": false,
+        "projects": false,
+        "achievements": false
+      },
+      "extraction_notes": "Tests plain text parsing, minimal structure detection",
+      "test_tags": ["edge_case", "plain_text", "minimal_structure"],
+      "parsing_expectations": {
+        "success_rate": 70,
+        "sections_detected": 3,
+        "skills_extracted": 8,
+        "experience_entries": 1
+      }
+    },
+
+    {
+      "id": "pdf_standard_001",
+      "filename": "standard_resume.pdf",
+      "category": "pdf_test",
+      "format": "pdf",
+      "difficulty": "medium",
+      "file_size_kb": 234,
+      "description": "Standard PDF resume to test PDF extraction capabilities",
+      "expected_sections": {
+        "contact": true,
+        "summary": true,
+        "experience": true,
+        "skills": true,
+        "education": true,
+        "projects": false
+      },
+      "extraction_notes": "Tests PDF text extraction, maintains reasonable accuracy",
+      "test_tags": ["pdf_extraction", "happy_path", "standard_format"],
+      "parsing_expectations": {
+        "success_rate": 75,
+        "sections_detected": 5,
+        "skills_extracted": 18,
+        "experience_entries": 3,
+        "warnings_expected": ["pdf_limitations"]
+      }
+    },
+
+    {
+      "id": "oversize_001",
+      "filename": "large_resume_15mb.pdf",
+      "category": "error_test",
+      "format": "pdf",
+      "difficulty": "error",
+      "file_size_kb": 15360,
+      "description": "Oversized file to test size limit validation (15MB > 10MB limit)",
+      "expected_sections": {},
+      "extraction_notes": "Should be rejected before processing",
+      "test_tags": ["error_condition", "file_size_limit", "validation"],
+      "parsing_expectations": {
+        "success_rate": 0,
+        "error_expected": "file_too_large",
+        "error_message": "File size exceeds maximum allowed size"
+      }
+    },
+
+    {
+      "id": "corrupted_001",
+      "filename": "corrupted_file.docx",
+      "category": "error_test",
+      "format": "docx",
+      "difficulty": "error",
+      "file_size_kb": 23,
+      "description": "Corrupted DOCX file to test error handling",
+      "expected_sections": {},
+      "extraction_notes": "Should fail gracefully with proper error message",
+      "test_tags": ["error_condition", "file_corruption", "error_handling"],
+      "parsing_expectations": {
+        "success_rate": 0,
+        "error_expected": "file_corrupted",
+        "error_message": "Unable to process file - file may be corrupted"
+      }
+    },
+
+    {
+      "id": "accessibility_001",
+      "filename": "screen_reader_optimized.docx",
+      "category": "accessibility",
+      "format": "docx",
+      "difficulty": "easy",
+      "file_size_kb": 52,
+      "description": "Resume optimized for screen readers with proper heading structure",
+      "expected_sections": {
+        "contact": true,
+        "summary": true,
+        "experience": true,
+        "skills": true,
+        "education": true,
+        "achievements": false
+      },
+      "extraction_notes": "Tests accessibility-friendly parsing, heading detection",
+      "test_tags": ["accessibility", "screen_reader", "semantic_structure"],
+      "parsing_expectations": {
+        "success_rate": 95,
+        "sections_detected": 5,
+        "skills_extracted": 16,
+        "experience_entries": 2
+      }
+    }
+  ],
+
+  "test_procedures": {
+    "manual_qa": {
+      "description": "Manual verification of parsing accuracy",
+      "steps": [
+        "Upload each fixture file through the web interface",
+        "Verify successful upload and storage",
+        "Run parsing job and check for expected sections",
+        "Compare extracted data with expected values",
+        "Note any discrepancies or unexpected warnings",
+        "Test profile viewer display for each result"
+      ]
+    },
+
+    "automated_testing": {
+      "description": "Automated fixture testing",
+      "command": "python scripts/test_fixtures.py --manifest fixtures/manifest.json",
+      "expectations": [
+        "All happy_path fixtures achieve >90% success rate",
+        "Error conditions properly handled with appropriate messages",
+        "Complex layouts produce warnings but don't crash",
+        "Performance tests complete within 5 seconds per file"
+      ]
+    }
+  },
+
+  "qa_metrics": {
+    "success_criteria": {
+      "overall_parsing_success": ">85%",
+      "section_detection_accuracy": ">90%",
+      "error_handling_coverage": "100%",
+      "performance_threshold": "<5s per file"
+    },
+
+    "known_limitations": [
+      "Complex table layouts may have reduced accuracy",
+      "PDF extraction less reliable than DOCX",
+      "Image content cannot be processed",
+      "Multi-column layouts may scramble text order"
+    ]
+  },
+
+  "usage_instructions": {
+    "setup": "Place all fixture files in scout-backend/fixtures/ directory",
+    "testing": "Run 'python test_fixtures.py' to execute automated tests",
+    "manual": "Upload files through web UI at http://localhost:3000",
+    "verification": "Compare results against expected_sections in manifest"
+  }
+}

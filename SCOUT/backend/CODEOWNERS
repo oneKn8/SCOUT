@@ -1,0 +1,18 @@
+# Global owners
+* @scout-team
+
+# Backend specific
+/app/ @scout-backend-team
+/api/ @scout-backend-team
+/models/ @scout-backend-team
+/services/ @scout-backend-team
+
+# Database
+/migrations/ @scout-backend-team @scout-db-team
+/scripts/ @scout-backend-team
+
+# Configuration
+/.github/ @scout-team
+/requirements.txt @scout-team
+/pyproject.toml @scout-team
+/docker-compose.yml @scout-team
